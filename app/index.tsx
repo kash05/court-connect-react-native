@@ -18,7 +18,10 @@ export default function Index() {
     const initializeAuth = async () => {
       dispatch(setLoading(true));
 
-      await authAPI.getCurrentUser();
+      await authAPI.getCurrentUser().catch(() => {
+        setIsInitialized(false);
+        console.log("hui");
+      });
 
       dispatch(setLoading(false));
       setIsInitialized(true);
@@ -35,9 +38,9 @@ export default function Index() {
       return;
     }
 
-    if (user?.userType === "owner") {
+    if (user?.roles.forEach((role) => role.display_name === "owner")) {
       router.replace("/(owner)/dashboard");
-    } else if (user?.userType === "player") {
+    } else if (user?.roles.forEach((role) => role.display_name === "player")) {
       router.replace("/(player)/home");
     } else {
       router.replace("/(auth)/login");

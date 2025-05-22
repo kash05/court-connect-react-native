@@ -2,6 +2,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { Stack } from "expo-router";
 import { Provider } from "react-redux";
 import { store } from "../lib/store";
+import "./globals.css";
 
 const queryClient = new QueryClient();
 
