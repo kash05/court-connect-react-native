@@ -16,7 +16,8 @@
         "foregroundImage": "./assets/images/adaptive-icon.png",
         "backgroundColor": "#ffffff"
       },
-      "edgeToEdgeEnabled": true
+      "edgeToEdgeEnabled": true,
+      "package": "com.kashexpo05.CourtConnect"
     },
     "web": {
       "bundler": "metro",
@@ -37,6 +38,16 @@
     ],
     "experiments": {
       "typedRoutes": true
+    },
+    "extra": {
+      "extra": {
+        "API_BASE_URL": "process.env.API_BASE_URL",
+        "API_VERSION": "process.env.API_VERSION"
+      },
+      "router": {},
+      "eas": {
+        "projectId": "17366336-07b5-4dad-824e-2fefdba5dbdc"
+      }
     }
   }
 }
