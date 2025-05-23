@@ -1,33 +1,30 @@
-import { ActivityIndicator, View } from "react-native";
+import { useRouter } from "expo-router";
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
+import { UserRole } from "../lib/enum/UserEnum";
 import { RootState } from "../lib/store";
-import { Role } from "../lib/types/auth";
-import Login from "./(auth)/login";
-import OwnerLayout from "./(owner)/_layout";
-import PlayerLayout from "./(player)/_layout";
 
 export default function Index() {
-  const { isAuthenticated, user, isLoading } = useSelector(
+  const { isAuthenticated, userRole, isInitialized } = useSelector(
     (state: RootState) => state.auth
   );
+  const router = useRouter();
 
-  if (!isAuthenticated) {
-    return <Login />;
-  }
+  useEffect(() => {
+    if (!isInitialized) return;
 
-  if (user?.roles.forEach((role: Role) => role.display_name === "owner")) {
-    return <OwnerLayout />;
-  } else if (
-    user?.roles.forEach((role: Role) => role.display_name === "player")
-  ) {
-    return <PlayerLayout />;
-  }
+    if (isAuthenticated) {
+      const hasOwnerRole = userRole?.some((role) => role.id === UserRole.Owner);
 
-  if (isLoading) {
-    return (
-      <View className="flex-1 items-center justify-center bg-white">
-        <ActivityIndicator size="large" color="#007AFF" />
-      </View>
-    );
-  }
+      if (hasOwnerRole) {
+        router.replace("/(owner)/dashboard");
+      } else {
+        router.replace("/(player)/home");
+      }
+    } else {
+      router.replace("/(auth)/login");
+    }
+  }, [isAuthenticated, userRole, isInitialized, router]);
+
+  return null;
 }

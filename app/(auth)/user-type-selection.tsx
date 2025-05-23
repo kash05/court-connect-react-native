@@ -47,6 +47,15 @@ export default function UserTypeSelection() {
           </Text>
         </TouchableOpacity>
       </View>
+
+      <TouchableOpacity
+        onPress={() => router.replace("/(auth)/login")}
+        className="bg-tertiary py-3 rounded-xl"
+      >
+        <Text className="text-white text-center font-semibold">
+          Go back to sign in
+        </Text>
+      </TouchableOpacity>
     </View>
   );
 }

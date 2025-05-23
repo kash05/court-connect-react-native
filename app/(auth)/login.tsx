@@ -14,6 +14,7 @@ import {
 import Toast from "react-native-toast-message";
 import { z } from "zod";
 import { authAPI } from "../../lib/api/auth";
+import { UserRole } from "../../lib/enum/UserEnum";
 import { store } from "../../lib/store";
 import { setToken, setUser } from "../../lib/store/slices/authSlice";
 import { LoginCredentials, TokenInterface } from "../../lib/types/auth";
@@ -58,7 +59,16 @@ export default function Login({ navigation }: { navigation?: any }) {
       authAPI.getCurrentUser().then((user) => {
         store.dispatch(setUser(user));
       });
-      router.push("/(player)/home");
+
+      if (
+        store
+          .getState()
+          .auth.userRole?.find((role) => role.id === UserRole.Owner)
+      ) {
+        router.replace("/(owner)/dashboard");
+      } else {
+        router.replace("/(player)/home");
+      }
     },
   });
 
