@@ -6,7 +6,7 @@ export interface LoginCredentials {
 export interface RegisterCredentials {
   email: string;
   password: string;
-  name: string;
+  full_name: string;
   gender: "male" | "female";
   agree_terms: boolean;
   role: number;

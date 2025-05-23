@@ -15,7 +15,7 @@ import {
 import Toast from "react-native-toast-message";
 import { z } from "zod";
 import { authAPI } from "../../../lib/api/auth";
-import { RegisterCredentials } from "../../../lib/types/auth";
+import { RegisterCredentials, User } from "../../../lib/types/auth";
 
 const registerSchema = z.object({
   fullName: z.string().min(2, "Full name must be at least 2 characters"),
@@ -69,14 +69,14 @@ export default function Register({ navigation }: { navigation?: any }) {
       });
       console.error("Registration failed:", error);
     },
-    onSuccess: () => {
-      router.push("/(auth)/login");
+    onSuccess: (res: User) => {
       Toast.show({
         type: "success",
         text1: "Registration Successful",
-        text2: "Welcome to CourtConnect!",
-        visibilityTime: 3000,
+        text2: "Please login to continue using CourtConnect.",
+        visibilityTime: 5000,
       });
+      navigateToLogin();
     },
   });
 
@@ -95,7 +95,7 @@ export default function Register({ navigation }: { navigation?: any }) {
 
   const onSubmit = (data: RegisterFormData) => {
     const registerData: RegisterCredentials = {
-      name: data.fullName,
+      full_name: data.fullName,
       email: data.email,
       password: data.password,
       gender: data.gender,

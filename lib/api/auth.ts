@@ -26,8 +26,7 @@ export const authAPI = {
   },
 
   register: async (userData: RegisterCredentials) => {
-    const response = await apiClient.post<User>("/auth/register", userData);
-    store.dispatch(setUser(response.data));
+    const response = await apiClient.post<User>("/users/register", userData);
     return response.data;
   },
 
