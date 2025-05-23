@@ -1,47 +1,11 @@
 import { Ionicons } from "@expo/vector-icons";
-import { Tabs } from "expo-router";
-import { View } from "react-native";
-import Animated, {
-  useAnimatedStyle,
-  useSharedValue,
-} from "react-native-reanimated";
-
-function ElevatedTabButton({ children }: { children: React.ReactNode }) {
-  const scale = useSharedValue(1);
-
-  const animatedStyle = useAnimatedStyle(() => ({
-    transform: [{ scale: scale.value }],
-  }));
-
-  return (
-    <Animated.View
-      style={[
-        animatedStyle,
-        {
-          top: -25,
-          justifyContent: "center",
-          alignItems: "center",
-          elevation: 6,
-        },
-      ]}
-    >
-      <View
-        style={{
-          width: 60,
-          height: 60,
-          borderRadius: 100,
-          backgroundColor: "var(--secondary-color)",
-          justifyContent: "center",
-          alignItems: "center",
-        }}
-      >
-        {children}
-      </View>
-    </Animated.View>
-  );
-}
+import { Tabs, useRouter } from "expo-router";
+import { TouchableOpacity } from "react-native";
+import ElevatedTabButton from "../../components/ElevatedTabButton";
 
 export default function PlayerLayout() {
+  const router = useRouter();
+
   return (
     <Tabs
       screenOptions={{
@@ -80,6 +44,34 @@ export default function PlayerLayout() {
               <Ionicons name="add" size={28} color="#fff" />
             </ElevatedTabButton>
           ),
+          headerShown: true,
+          headerTitle: "Add Property",
+          headerTitleAlign: "center",
+          headerLeft: () => (
+            <TouchableOpacity
+              onPress={() => router.back()}
+              style={{ marginLeft: 16 }}
+            >
+              <Ionicons
+                name="arrow-back"
+                size={24}
+                color="var(--primary-color)"
+              />
+            </TouchableOpacity>
+          ),
+          headerStyle: {
+            backgroundColor: "#fff",
+            elevation: 2,
+            shadowOpacity: 0.1,
+          },
+          headerTitleStyle: {
+            fontSize: 18,
+            fontWeight: "600",
+            color: "var(--primary-color)",
+          },
+          tabBarStyle: {
+            display: "none",
+          },
         }}
       />
       <Tabs.Screen
