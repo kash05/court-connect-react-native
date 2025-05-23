@@ -1,6 +1,6 @@
 import axios from "axios";
+import { store } from "../../lib/store";
 import { config } from "../config";
-import { store } from "../store";
 
 const API_BASE_URL = config.apiBaseUrl;
 const API_VERSION = config.apiVersion;

@@ -1,6 +1,6 @@
+import { store } from "../../lib/store";
+import { logout, setToken, setUser } from "../../lib/store/slices/authSlice";
 import { config } from "../config";
-import { store } from "../store";
-import { logout, setToken, setUser } from "../store/slices/authSlice";
 import {
   LoginCredentials,
   RegisterCredentials,

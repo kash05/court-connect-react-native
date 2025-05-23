@@ -1,3 +1,101 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+:root {
+  --primary-color: #1e88e5;
+  --primary-contrast: #ffffff;
+  --primary-shade: #1976d2;
+  --primary-tint: #42a5f5;
+
+  --secondary-color: #00acc1;
+  --secondary-contrast: #ffffff;
+  --secondary-shade: #0097a7;
+  --secondary-tint: #26c6da;
+
+  --tertiary-color: #3949ab;
+  --tertiary-contrast: #ffffff;
+  --tertiary-shade: #303f9f;
+  --tertiary-tint: #5c6bc0;
+
+  --success-color: #43a047;
+  --success-contrast: #ffffff;
+  --success-shade: #388e3c;
+  --success-tint: #66bb6a;
+
+  --warning-color: #ffb300;
+  --warning-contrast: #000000;
+  --warning-shade: #ffa000;
+  --warning-tint: #ffca28;
+
+  --danger-color: #e53935;
+  --danger-contrast: #ffffff;
+  --danger-shade: #d32f2f;
+  --danger-tint: #ef5350;
+
+  --medium-color: #757575;
+  --medium-contrast: #ffffff;
+  --medium-shade: #616161;
+  --medium-tint: #9e9e9e;
+
+  --light-color: #f5f7fa;
+  --light-contrast: #000000;
+  --light-shade: #e0e0e0;
+  --light-tint: #fafafa;
+
+  --dark-color: #263238;
+  --dark-contrast: #ffffff;
+  --dark-shade: #1e272c;
+  --dark-tint: #455a64;
+
+  --orange-color: #fb923c;
+  --orange-contrast: #000000;
+}
+
+/* Dark mode colors */
+.dark {
+  --primary-color: #90caf9;
+  --primary-contrast: #000000;
+  --primary-shade: #64b5f6;
+  --primary-tint: #a6d4fa;
+
+  --secondary-color: #80deea;
+  --secondary-contrast: #000000;
+  --secondary-shade: #4dd0e1;
+  --secondary-tint: #b2ebf2;
+
+  --tertiary-color: #9fa8da;
+  --tertiary-contrast: #000000;
+  --tertiary-shade: #7986cb;
+  --tertiary-tint: #c5cae9;
+
+  --success-color: #81c784;
+  --success-contrast: #000000;
+  --success-shade: #66bb6a;
+  --success-tint: #a5d6a7;
+
+  --warning-color: #ffe082;
+  --warning-contrast: #000000;
+  --warning-shade: #ffca28;
+  --warning-tint: #ffe57f;
+
+  --danger-color: #ef9a9a;
+  --danger-contrast: #000000;
+  --danger-shade: #e57373;
+  --danger-tint: #ffcdd2;
+
+  --medium-color: #b0bec5;
+  --medium-contrast: #000000;
+  --medium-shade: #90a4ae;
+  --medium-tint: #cfd8dc;
+
+  --light-color: #121212;
+  --light-contrast: #ffffff;
+  --light-shade: #1e1e1e;
+  --light-tint: #2e2e2e;
+
+  --dark-color: #eceff1;
+  --dark-contrast: #000000;
+  --dark-shade: #cfd8dc;
+  --dark-tint: #eceff1;
+}

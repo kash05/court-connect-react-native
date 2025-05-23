@@ -9,7 +9,7 @@ export interface RegisterCredentials {
   name: string;
   gender: "male" | "female";
   agree_terms: boolean;
-  role: "owner" | "player";
+  role: number;
 }
 
 export interface TokenInterface {
