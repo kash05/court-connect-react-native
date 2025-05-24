@@ -40,10 +40,13 @@ export const timingAndAvailabilitySchema = z.object({
     })
   ),
   bookingMode: z.enum(["slots", "full_day", "both"]),
-  slotDuration: z
-    .number()
-    .min(15, "Minimum slot duration is 15 minutes")
-    .max(480, "Maximum slot duration is 8 hours"),
+  slotDuration: z.array(
+    z
+      .number()
+      .min(15, "Minimum slot duration is 15 minutes")
+      .max(480, "Maximum slot duration is 8 hours")
+  ),
+
   weeklySlots: z.record(z.string(), z.array(z.string())),
   exceptions: z.array(
     z.object({

@@ -34,7 +34,7 @@ const initialState: PropertyState = {
     timingAndAvailability: {
       openingHours: {},
       bookingMode: "slots",
-      slotDuration: 0,
+      slotDuration: [],
       weeklySlots: {},
       exceptions: [],
       maxAdvanceDays: 0,

@@ -6,6 +6,7 @@ import { setPropertyForm } from "../../lib/store/slices/propertySlice";
 import { PropertyForm } from "../../lib/types/property";
 import { BasicInfoStep } from "./basicInfoStep";
 import { PropertyDetailStep } from "./propertyDetail";
+import { TimingAvailabilityStep } from "./timingAndAvailability";
 
 type FormStep =
   | "basicInfo"
@@ -58,6 +59,7 @@ export function MultiStepPropertyForm() {
       [stepKey]: data,
     };
     dispatch(setPropertyForm(updatedForm));
+    console.log(updatedForm);
   };
 
   const handleNext = (stepKey: FormStep, data: any) => {
@@ -144,11 +146,12 @@ export function MultiStepPropertyForm() {
           />
         );
       case "timingAndAvailability":
-        // TODO: Implement TimingAvailabilityStep
         return (
-          <View>
-            <Text>Timing & Availability Step - To be implemented</Text>
-          </View>
+          <TimingAvailabilityStep
+            data={propertyForm.timingAndAvailability}
+            onNext={(data) => handleNext("timingAndAvailability", data)}
+            onBack={handleBack}
+          />
         );
       case "bookingAndPricing":
         // TODO: Implement BookingPricingStep
