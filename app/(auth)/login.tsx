@@ -54,20 +54,23 @@ export default function Login({ navigation }: { navigation?: any }) {
       });
       console.error("Login failed:", error);
     },
-    onSuccess: (data: TokenInterface) => {
-      setToken(data.access_token);
-      authAPI.getCurrentUser().then((user) => {
+    onSuccess: async (data: TokenInterface) => {
+      try {
+        setToken(data.access_token);
+        const user = await authAPI.getCurrentUser();
         store.dispatch(setUser(user));
-      });
 
-      if (
-        store
-          .getState()
-          .auth.userRole?.find((role) => role.id === UserRole.Owner)
-      ) {
-        router.replace("/(owner)/dashboard");
-      } else {
-        router.replace("/(player)/home");
+        const hasOwnerRole = user?.roles?.some(
+          (role) => role.id === UserRole.Owner
+        );
+        router.replace(hasOwnerRole ? "/(owner)/dashboard" : "/(player)/home");
+      } catch (error) {
+        console.error("Fetching user failed:", error);
+        Toast.show({
+          type: "error",
+          text1: "Login Error",
+          text2: "Failed to fetch user info. Please try again.",
+        });
       }
     },
   });
